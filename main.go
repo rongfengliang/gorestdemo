@@ -8,8 +8,8 @@ import (
 
 // User user
 type User struct {
-	Id   string `json:"id" xml:"id"`
-	Name string `json:"id" xml:"name"`
+	Id   string
+	Name string
 }
 
 func main() {
