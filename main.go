@@ -23,10 +23,22 @@ func main() {
 		Produces(restful.MIME_JSON, restful.MIME_XML)
 
 	ws.Route(ws.GET("/{user-id}").To(userFind))
+	ws.Route(ws.POST("/{user-id}").To(userFind2))
 	restful.Add(ws)
 	http.ListenAndServe(":8080", nil)
 }
 
+// for post test
+func userFind2(req *restful.Request, res *restful.Response) {
+	// TODO
+	id := req.PathParameter("user-id")
+	user := new(User)
+	user.Id = id
+	req.ReadEntity(user)
+	res.WriteHeaderAndEntity(http.StatusOK, user)
+}
+
+// for get test
 func userFind(req *restful.Request, res *restful.Response) {
 	// TODO
 	id := req.PathParameter("user-id")
